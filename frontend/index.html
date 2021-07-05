@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Western Gate</title>
+    <link rel="shortcut icon" type="image/png" href="assets/art/icon.ico" />
+    <!-- See https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_theme_deep-purple -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        .title {
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .maintable {
+            margin: 0px auto;
+            background-color: #341d5b;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        td {
+            padding: 3px 5px;
+        }
+
+        body {
+            padding: 10px 10px;
+            align-items: center;
+            background-image: url("assets/art/bg2.jpg");
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .inactive {
+            background-color: #572b92;
+            color: rgb(255, 255, 255);
+        }
+
+        .intro {
+            width: 850px;
+            height: 300px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .graph {
+            vertical-align: top;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .chainlogo {
+            text-align: center;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .w3-theme-l5 {
+            color: #000 !important;
+            background-color: #f6f3fb !important
+        }
+
+        .w3-theme-l4 {
+            color: #000 !important;
+            background-color: #e0d6f2 !important
+        }
+
+        .w3-theme-l3 {
+            color: #000 !important;
+            background-color: #c1ade5 !important
+        }
+
+        .w3-theme-l2 {
+            color: #fff !important;
+            background-color: #a384d8 !important
+        }
+
+        .w3-theme-l1 {
+            color: #fff !important;
+            background-color: #845bcb !important
+        }
+
+        .w3-theme-d1 {
+            color: #fff !important;
+            background-color: #5d34a4 !important
+        }
+
+        .w3-theme-d2 {
+            color: #fff !important;
+            background-color: #532e92 !important
+        }
+
+        .w3-theme-d2:hover {
+            color: rgb(255, 255, 255) !important;
+            background-color: #6441a0 !important;
+            cursor: pointer;
+        }
+
+        .w3-theme-d3-orig {
+            color: #fff !important;
+            background-color: #482880 !important
+        }
+
+        .w3-theme-d3 {
+            color: #fff !important;
+            background-color: #482880 !important
+        }
+
+        .w3-theme-d3:hover {
+            color: #fff !important;
+            background-color: #5b3a94 !important;
+            cursor: pointer;
+        }
+
+        .w3-theme-d4 {
+            color: #fff !important;
+            background-color: #3e236d !important
+        }
+
+        .w3-theme-d5 {
+            color: #fff !important;
+            background-color: #341d5b !important
+        }
+
+        .w3-theme-light {
+            color: #000 !important;
+            background-color: #f6f3fb !important
+        }
+
+        .w3-theme-dark {
+            color: #fff !important;
+            background-color: #341d5b !important
+        }
+
+        .w3-theme-action {
+            color: #fff !important;
+            background-color: #341d5b !important
+        }
+
+        .w3-theme {
+            color: #fff !important;
+            background-color: #673ab7 !important
+        }
+
+        .w3-text-theme {
+            color: #673ab7 !important
+        }
+
+        .w3-border-theme {
+            border-color: #673ab7 !important
+        }
+
+        .w3-hover-theme:hover {
+            color: #fff !important;
+            background-color: #673ab7 !important
+        }
+
+        .w3-hover-text-theme:hover {
+            color: #673ab7 !important
+        }
+
+        .w3-hover-border-theme:hover {
+            border-color: #673ab7 !important
+        }
+
+        .play {
+            width: 100px;
+            height: 60px;
+            background-image: url(play.png);
+            float: left;
+        }
+
+        .pause {
+            width: 100px;
+            height: 60px;
+            background-image: url(pause.png);
+            float: left;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+        // Handle play/pause
+        $(function () {
+            $("button").click(function (event) {
+                current_value = $("#playpause").html()
+                if (current_value == "Pause") {
+                    $("#playpause").html("Resume")
+                } else {
+                    $("#playpause").html("Pause")
+                }
+            });
+        });
+
+        token_icons = ['MTL', 'GLM', 'DOGE', 'DAI', 'KCS', 'RIF', 'ICX', 'FLOW', 'MFT', 'CRO', 'LEO', 'XTZ', 'NOIA', 'TOMO', 'WETH', 'LRC', 'NMR', 'NANO', 'TRAC', 'RVN', 'KAVA', 'ZEC', 'REV', 'OXT', 'ARDR', 'POLY', 'YFI', 'AR', 'KMD', 'BTS', 'BCH', 'KIN', 'STORJ', 'STMX', 'REEF', 'ZIL', 'LTO', 'BTMX', 'OCEAN', 'MIOTA', 'MED', 'WAN', 'ETH', 'HBAR', 'BSV', 'BTM', 'ELF', 'LSK', 'AVAX', 'AAVE', 'ALPHA', 'DCR', 'JST', 'KSM', 'ZKS', 'MKR', 'SKL', 'WAXP', 'EOS', 'TEL', 'HUSD', 'ALGO', 'VLX', 'ROSE', 'KLAY', 'SWAP', 'MVL', 'POWR', 'ARK', 'BNT', 'FET', 'CRV', 'NPXS', 'KNC', 'ONT', 'VTHO', 'SRM', 'FTT', 'TFUEL', 'REP', 'TRX', 'OGN', 'XLM', 'VGX', 'CHSB', 'HIVE', 'USDC', 'LBC', 'WBTC', 'BTT', 'XVG', 'FUN', 'LTC', 'ANT', 'ATOM', 'WOLF', 'UTK', 'GRT', 'HEDG', 'DASH', 'CEL', '1INCH', 'UBT', 'OMG', 'LPT', 'XRP', '0_default', 'BTCB', 'QNT', 'LOOM', 'NEO', 'PAX', 'FIL', 'ALICE', 'META', 'SXP', 'BTC', 'ZEN', 'NU', 'CKB', 'HOT', 'FTM', 'DGB', 'UST', 'MARO', 'MANA', 'BADGER', 'CVT', 'XEM', 'NEXO', 'CRE', 'DODO', 'ADA', 'NEAR', 'BNB', 'BTG', 'STEEM', 'SNT', 'RSR', 'CAKE', 'RENBTC', 'HNS', 'EWT', 'DENT', 'XMR', 'CELO', 'BAT', 'COMP', 'SOL', 'WAVES', 'BAND', 'XVS', 'STRAX', 'WMATIC', 'COTI', 'ETC', 'GNO', 'ORBS', 'HT', 'IOST', 'QTUM', 'CVC', 'REN', 'HNT', 'AVA', 'SCRT', 'QKC', 'WIN', 'BCD', 'BAL', 'RUNE', 'BUSD', 'ANKR', 'ONE', 'SNX', 'IOTX', 'STX', 'DOT', 'SC', 'UNI', 'UMA', 'AMPL', 'EGLD', 'VET', 'THETA', 'XOR', 'TUSD', 'SUSHI', 'OKB', 'ZRX', 'CELR', 'ENJ', 'LUNA', 'SAND', 'IQ', 'BORA', 'USDT', 'WRX', 'MAID', 'CHZ', 'LINK', 'POLS']
+
+        function updateStatistics(arb) {
+            console.log(arb)
+            var divContainer = document.getElementById("statistics")
+            divContainer.innerHTML = "Profit: $" + arb.profitUSD.toFixed(2)
+        }
+
+        function updateGraph(arb) {
+
+            var table = document.createElement("table")
+            //table.style.borderStyle = "solid"
+            table.style.margin = "0 auto"
+            table.style.padding = "3px"
+
+            // Get the first chain in the arb path. Show its logo
+            current_chain = arb.path[0]["chain"]
+            var tr_chain = table.insertRow(-1)
+            var tabCell = tr_chain.insertCell(-1)
+            tabCell.setAttribute("class", "chainlogo")
+            tabCell.innerHTML = "<img src='assets/chain_logos/" + current_chain + ".png' height='75' />"
+
+            if (current_chain == "polygon") {
+                tabCell.style.borderBottom = "thick solid #8842e5"
+            } else if (current_chain == "ethereum") {
+                tabCell.style.borderBottom = "thick solid #454a75"
+            }
+
+            // Create the first row for path info
+            var tr_trade = table.insertRow(-1)
+            var tabCell = tr_trade.insertCell(-1)
+            tabCell.setAttribute("class", "chainlogo")
+            cell_contents = ""
+
+            for (var i = 0; i < arb.path.length + 1; i++) {
+                // This is weird. Each node has an i/o token.
+                //   Usually, 'o' of one node is the 'i' of 
+                //   the next one, but not in the last case
+                if (i == arb.path.length) {
+                    node = arb.path[i - 1]
+                } else {
+                    node = arb.path[i]
+                }
+
+                // Create new rows for the next chain if needed
+                if (current_chain != node["chain"]) {
+                    // This is a transition between chains
+                    ticker = node.token_in_symbol
+                    cnt = node.token_in_count
+                    // Format the amount for display
+                    if (cnt > 1.0) {
+                        cnt = cnt.toFixed(2)
+                    } else {
+                        cnt = cnt.toFixed(4)
+                    }
+                    if (token_icons.includes(ticker)) {
+                        ticker_path = "assets/icons/" + ticker + ".png"
+                        ticker_image = "<img src='" + ticker_path + "' width='32' />"
+                    } else {
+                        ticker_image = ticker
+                    }
+
+                    if (current_chain == "polygon") {
+                        scan_url = "https://polygonscan.com/address/"
+                    } else if (current_chain == "ethereum") {
+                        scan_url = "https://etherscan.io/address/"
+                    }
+
+                    ticker_url = "<a href='" + scan_url + arb.path[i - 1].token_out_id + "'>" + ticker_image + "</a>"
+                    cell_contents += cnt + " " + ticker_url + " ⇝"
+                    tabCell.innerHTML = cell_contents
+
+                    // Start the new chain
+                    current_chain = node["chain"]
+                    var tabCell = tr_chain.insertCell(-1)
+                    tabCell.setAttribute("class", "chainlogo")
+                    tabCell.style.textAlign = "center"
+
+                    if (current_chain == "polygon") {
+                        tabCell.style.borderBottom = "thick solid #8842e5"
+                    } else if (current_chain == "ethereum") {
+                        tabCell.style.borderBottom = "thick solid #454a75"
+                    }
+
+                    logo_path = "assets/chain_logos/" + current_chain + ".png"
+                    tabCell.innerHTML = "<img align='center' src='" + logo_path + "' height='75' />"
+
+                    // Create the next row for path info
+                    var tabCell = tr_trade.insertCell(-1)
+                    tabCell.setAttribute("class", "chainlogo")
+                    // Clear out the cell_contents buffer
+                    cell_contents = ""
+                }
+
+                if (i < arb.path.length) {
+                    ticker = node.token_in_symbol
+                    cnt = node.token_in_count
+                    token_id = node.token_in_id
+                } else if (i == arb.path.length) {
+                    ticker = node.token_out_symbol
+                    cnt = node.token_out_count
+                    token_id = node.token_out_id
+                }
+
+                if (token_icons.includes(ticker)) {
+                    ticker_path = "assets/icons/" + ticker + ".png"
+                    ticker_image = "<img src='" + ticker_path + "' width='32' />"
+                } else {
+                    ticker_image = ticker
+                }
+
+                if (current_chain == "polygon") {
+                    scan_url = "https://polygonscan.com/address/"
+                } else if (current_chain == "ethereum") {
+                    scan_url = "https://etherscan.io/address/"
+                }
+                ticker_url = "<a href='" + scan_url + token_id + "'>" + ticker_image + "</a>"
+
+                // Format the amount for display
+                if (cnt > 1.0) {
+                    cnt = cnt.toFixed(2)
+                } else {
+                    cnt = cnt.toFixed(4)
+                }
+                cell_contents += cnt + " " + ticker_url + " "
+
+                if (i < arb.path.length) {
+                    cell_contents += " <a style='text-decoration: none' href='" + scan_url + node.id + "'> &#10146; </a>"
+                }
+            }
+
+            // Display the last path
+            tabCell.innerHTML = cell_contents;
+
+            var divContainer = document.getElementById("graph")
+            divContainer.innerHTML = ""
+            divContainer.appendChild(table)
+
+            updateStatistics(arb)
+        }
+
+        function updateArbs(type) {
+            playpause = $("#playpause").html()
+            if (playpause == "Resume") {
+                return
+            }
+
+            $.getJSON("http://hackmoney.c4m3m83r7.net/get_arb", function (data) {
+                console.log(data)
+                if (type == "probably_legit") {
+                    results = data.probably_legit
+                } else if (type == "too_good_to_be_true") {
+                    results = data.too_good_to_be_true
+                }
+
+                console.log(results)
+
+                // These are the json fields to print in the column table
+                var cols = ["profitUSD", "path"]
+
+                var table = document.createElement("table")
+
+                var tr = table.insertRow(-1)
+
+                for (var i = 0; i < cols.length; i++) {
+                    var th = document.createElement("th")
+
+                    //Rename columns
+                    if (cols[i] == "profitUSD") {
+                        col_label = "Profit ($)"
+                        th.style.width = "70px"
+                    } else if (cols[i] == "path") {
+                        col_label = "Arbitrage path"
+                        th.style.width = "400px"
+                    }
+
+                    th.innerHTML = col_label
+                    th.style.textAlign = "center"
+                    tr.appendChild(th)
+                }
+
+                for (var i = 0; i < Math.min(results.length, 75); i++) {
+
+                    tr = table.insertRow(-1)
+                    tr.setAttribute("id", i)
+
+                    // This will trigger the graph to be updated
+                    function handleEvent(passedInElement) {
+                        return function (e) {
+                            $("#playpause").html("Resume")
+                            updateGraph(passedInElement)
+                        };
+                    }
+                    tr.addEventListener('click', handleEvent(results[i]));
+
+                    // Draw the graph for the first/best result
+                    if (i == 0) {
+                        updateGraph(results[0])
+                    }
+
+                    if (i % 2 == 0) {
+                        theme = "w3-theme-d2"
+                    }
+                    else {
+                        theme = "w3-theme-d3"
+                    }
+
+                    tr.className += theme
+
+
+                    for (var j = 0; j < cols.length; j++) {
+                        var tabCell = tr.insertCell(-1)
+
+                        col_name = cols[j]
+                        if (col_name == "path") {
+                            path = results[i]["path"]
+                            cell_contents = ""
+                            for (var k = 0; k < path.length + 1; k++) {
+                                // This is weird. Each node has an i/o token.
+                                //   Usually, 'o' of one node is the 'i' of 
+                                //   the next one, but not in the last case
+                                if (k == path.length) {
+                                    node = path[k - 1]
+                                } else {
+                                    node = path[k]
+                                }
+
+                                // Get the chain 
+                                chain_name = node["chain"]
+                                if (chain_name == "ethereum") {
+                                    name = "eth"
+                                } else if (chain_name == "polygon") {
+                                    name = "poly"
+                                }
+
+                                if (k == 0) {
+                                    ticker = node.token_in_symbol
+                                    // Format the input amount for display
+                                    var cnt = node.token_in_count
+                                    if (cnt > 1.0) {
+                                        cnt = cnt.toFixed(2)
+                                    } else {
+                                        cnt = cnt.toFixed(4)
+                                    }
+                                    cell_contents += cnt + " " + ticker
+                                } else if (k < path.length) {
+                                    ticker = node.token_in_symbol
+                                    cell_contents += ticker
+                                } else {
+                                    ticker = node.token_out_symbol
+                                    // Format the input amount for display
+                                    var cnt = node.token_out_count
+                                    if (cnt > 1.0) {
+                                        cnt = cnt.toFixed(2)
+                                    } else {
+                                        cnt = cnt.toFixed(4)
+                                    }
+                                    cell_contents += cnt + " " + ticker
+                                }
+
+                                if (k < path.length) {
+                                    cell_contents += " &#10146; "
+                                }
+                            }
+                            tabCell.innerHTML = cell_contents;
+                        } else if (col_name == "profitUSD") {
+                            profit = results[i][cols[j]]
+                            tabCell.innerHTML = profit.toFixed(2)
+                        }
+                    }
+                }
+
+                var divContainer = document.getElementById("showData")
+                divContainer.innerHTML = ""
+                divContainer.appendChild(table)
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <table class="maintable">
+        <tr>
+            <td rowspan="2" style="vertical-align: top; color: #fff; width: 470;">
+                <button type="button" id="playpause">Pause</button>
+                <p id="showData"></p>
+            </td>
+            <td class="intro" style="vertical-align: top; padding: 5px;">
+                <div>
+                    <img class="center" src="assets/art/Color logo - no background.png" width=700 />
+                    <img class="center" src="assets/art/transparent.png" width=900 height=1 />
+                    <p>
+                        Arbitrage on Ethereum and the related topic of Miner Extractable Value (MEV) is well-understood,
+                        with a mature community and tools to efficiently measure and capture it. However, cross-chain
+                        arbitrage/MEV has not yet been explored in the public setting.<br /><br />
+
+                        Western Gate tracks some of the cross-chain arbitrage available between Ethereum, Polygon, and
+                        Binance Smart Chain.
+                        Most arbitrage opportunities are small. However, MEV is not just arbitrage. To capture MEV,
+                        various "optimizations" are used, like front and back-running, and sandwich attacks. If we
+                        continue with this project, we will incorporate estimates of potential profits when MEV
+                        optimizations are included.<br /><br />
+
+                        Most of our data is obtained from The Graph. However, on BSC, PancakeSwap has the most liquid
+                        pools. PancakeSwap is notoriously difficult to Index. We owe special thanks to the <a
+                            href="https://streamingfast.io/">StreamingFast</a>
+                        team for giving us access to their
+                        high-speed PancakeSwap end-point for this project!
+                    </p>
+                </div>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td class="graph">
+                <span class="title">Details of selected arbitrage path (default is top arb):</span><br />
+                <p id="graph"></p>
+                <p class="title" id="statistics"></p>
+                <div>
+                    <p>FAQs:</p>
+                    <p>
+                        Q. What is this? <br />
+                        A. This project tracks the amount of cross-chain arbitrage between Ethereum, Polygon, and
+                        Binance Smart Chain. We only analyze exchanges based on Uniswap v2. On Ethereum, we track
+                        Uniswap v2 and SushiSwap. On Polygon we track SushiSwap and QuickSwap.
+
+                    <p>
+                        <a href="https://web.stanford.edu/~guillean/papers/uniswap_analysis.pdf">An analysis of
+                            Uniswap
+                            markets</a> explains how optimal trading on Uniswap v1 and v2 may be framed as
+                        a
+                        convex optimization problem. This implies that optimal swaps through a chain of Uniswap-type
+                        DEXs is also a convex problem. We call a sequence of swaps a "path". Given a hypothesis path
+                        through various DEXs, we solve for the amount of "input token" that will result in the most
+                        profit of
+                        that same token being output. We search over 30,000 paths and rank the best opportunities.
+                    </p>
+
+                    </p>
+                    <p>
+                        Q. How do I profit from this? <br />
+                        A. You buy and keep reserves of tokens that we both consider safe and exist on all chains being
+                        analyzed: WETH, BNB, MATIC, USDC,
+                        USDT, BUSD, UNI, WBTC, DAI, AAVE, COMP, SUSHI, YFI, SNX, CRV, LINK, BAT. You then execute the
+                        trades that the path finder discovers. You will notice that each "path" may go through
+                        non-reserve tokens, but it always starts and ends in one of these
+                        reserve tokens.
+                    </p>
+
+                    <p>
+                        Q. Who built this? <br />
+                        A. <a href="https://www.semiotic.ai/">Matt Deible</a>, <a href="http://alexnorell.com/">Alex
+                            Norell</a>, <a href="https://www.semiotic.ai/">Alexis Asseman</a>, and <a
+                            href="https://www.semiotic.ai/">Sam Green<a />.
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+<script>
+    $(document).ready(function () {
+        setInterval("updateArbs('probably_legit')", 1000);
+    });
+</script>
+
+</html>
