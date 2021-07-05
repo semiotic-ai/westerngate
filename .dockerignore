@@ -1,0 +1,5 @@
+terraform
+old_scripts
+redis*
+.vscode/
+__pycache__/

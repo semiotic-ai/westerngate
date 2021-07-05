@@ -1,0 +1,10 @@
+{
+    "ethereum": [
+        "uniswap/uniswap-v2",
+        "sushiswap/exchange"
+    ],
+    "polygon": [
+        "sushiswap/matic-exchange",
+        "sameepsi/quickswap06"
+    ]
+}
