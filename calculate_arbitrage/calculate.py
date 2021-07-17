@@ -1,6 +1,7 @@
 import json
 import multiprocessing
 import time
+import traceback
 from multiprocessing import Pool
 from pathlib import Path
 
@@ -31,6 +32,7 @@ def build_lps(subgraph, lp_per_dex, block_number=-1):
                 lps += amms
             except:
                 logger.error(f"Failed to load {dex_name} subgraph")
+                logger.error(traceback.format_exc())
     return lps
 
 

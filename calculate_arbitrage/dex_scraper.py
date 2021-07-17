@@ -12,9 +12,10 @@ def query_subgraph(
     custom_headers: Dict[str, str] = {},
 ) -> Dict:
     transport = AIOHTTPTransport(
-        url=provider_url + subgraph_name, headers=custom_headers
+        url=provider_url + subgraph_name, headers=custom_headers,
+        timeout=900
     )
-    client = Client(transport=transport, fetch_schema_from_transport=False)
+    client = Client(transport=transport, fetch_schema_from_transport=False, execute_timeout=1200)
     query = gql(query_str)
     result = client.execute(query, variables)
     return result
