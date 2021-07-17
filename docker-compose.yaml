@@ -10,21 +10,22 @@ services:
     environment:
       - REDIS_REPLICATION_MODE=master
   backend:
-    image: gcr.io/hackmoney-2021/backend
+    #image: gcr.io/hackmoney-2021/backend
+    container_name: backend
     tty: true
     build:
       context: backend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "8080:8080"
     environment:
       REDIS_PORT: 7777
       REDIS_HOST: redis
     depends_on:
       - redis
-    command: python -m uvicorn backend:app --port 80 --host 0.0.0.0
+    command: python -m uvicorn backend:app --port 8080 --host 0.0.0.0
   calc_arb:
-    image: gcr.io/hackmoney-2021/calculate_arb
+    #image: gcr.io/hackmoney-2021/calculate_arb
     tty: true
     build:
       context: calculate_arbitrage
@@ -35,6 +36,21 @@ services:
     depends_on:
       - redis
     command: python calculate.py
+  nginx:
+    image: nginx:1.15-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot:/etc/letsencrypt
+    depends_on:
+      - backend
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot:/etc/letsencrypt
   # calc_arb_worker:
   #   image: calculate_arb
   #   deploy:
